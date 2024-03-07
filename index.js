@@ -20,11 +20,11 @@ const usersRoutes = require('./routes/usersRoutes');
 const ExpressError = require('./utilities/ExpressError');
 
 const dbURL = process.env.DBURL
-
+const urlParser = {useNewURLParser:true,}
 const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', true);
-mongoose.connect(dbURL)
+mongoose.connect(dbURL, urlParser)
     .then(() => {
         console.log("MONGO CONNECTED!!");
     })
@@ -59,7 +59,7 @@ store.on("error", function (e) {
 })
 
 const sessionConfig = {
-    store: store,
+    store,
     secret,
     resave: false,
     saveUninitialized: false,
