@@ -1,0 +1,50 @@
+<% layout('layout/boilerplate')%>
+<div class="row">
+    <h1 class="text-center">Edit place</h1>
+    <div class="col-6 offset-3">
+        <form action="/foodplaces/<%=foodplace._id%>?_method=PUT" method="POST" novalidate class="validate-form" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="foodplaces[title]" required
+                    value="<%=foodplace.title %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location</label>
+                <input class="form-control" type="text" id="location" name="foodplaces[location]" required
+                    value="<%=foodplace.location %>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">foodplace Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">IDR</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price"
+                        aria-describedby="price-label" name="foodplaces[price]" required value="<%=foodplace.price %>">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="text" id="description"
+                    name="foodplaces[description]" required><%= foodplace.description%></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Insert More Image</label>
+                <input class="form-control" name="image" type="file" id="formFileMultiple" multiple>
+            </div>
+            <div class="mb-3">
+                <% foodplace.image.forEach(function(img, i) { %>
+                    <img src="<%= img.thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%= i %>" name="deleteImage[]" value="<%= img.filename %>">
+                        <label for="">Delete this image?</label>
+                    </div>
+                <% }) %>
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-info">Update foodplace</button>
+            </div>   
+        </form>
+        <a href="/foodplaces/<%= foodplace._id%>">Back To foodplace</a>
+
+    </div>
+</div>

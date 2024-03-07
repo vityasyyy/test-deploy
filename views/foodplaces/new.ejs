@@ -1,0 +1,35 @@
+
+<% layout('layout/boilerplate') %>
+
+<div class="row">
+    <h1 class="text-center">New foodplace</h1>
+    <div class="col-6 offset-3">
+        <form action="/foodplaces" method="POST" novalidate class="validate-form" id="foodPlaceForm" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label" for="title">Title: </label>
+                <input class="form-control" type="text" id="title" name="foodplaces[title]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location: </label>
+                <input class="form-control" type="text" id="location" name="foodplaces[location]" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Avg price: </label>
+                <div class="input-group">
+                    <span class="input-group-text">IDR</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00" name="foodplaces[price]" required>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description: </label>
+                <textarea class="form-control" type="text" id="description" name="foodplaces[description]" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Insert Image</label>
+                <input class="form-control" name="image" type="file" id="formFileMultiple" multiple>
+            </div>                                    
+            <button class="btn btn-success">Add Place</button>
+        </form>
+        <a href="/foodplaces">back to all places</a>    
+    </div>
+</div>
