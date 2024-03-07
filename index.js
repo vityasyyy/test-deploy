@@ -45,11 +45,13 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize());
 
+const secret = process.env.SECRET;
+
 const store = MongoStore.create({
     mongoUrl: dbURL,
     touchAfter: 24 * 60 & 60,
     crypto: {
-        secret: "thisisasecret"
+        secret,
     }
 })
 
@@ -59,7 +61,7 @@ store.on("error", function (e) {
 
 const sessionConfig = {
     store: store,
-    secret: "thisisasecret",
+    secret,
     resave: false,
     saveUninitialized: false,
     cookies: {
