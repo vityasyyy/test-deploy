@@ -48,7 +48,7 @@ const secret = process.env.SECRET;
 
 const store = MongoStore.create({
     mongoUrl: dbURL,
-    touchAfter: 24 * 60 & 60,
+    touchAfter: 24 * 60 * 60,
     crypto: {
         secret,
     }
